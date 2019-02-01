@@ -1,0 +1,16 @@
+{
+	"MyHostName" : "DESKTOP-6K0AFBG",
+	"MyIP" : "192.168.11.15",
+	"CPU" : 4,
+	"Memory": {
+		"total" : 124160,
+		"free" : 103215,
+		"used" : 20944
+	},
+	"Agents":[{
+		"name":"hoge",
+		"id":"kakk3",
+		"time":7
+	}]
+
+}

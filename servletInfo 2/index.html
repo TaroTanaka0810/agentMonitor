@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title></title>
+
+	<!-- bootstrap css -->
+	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO' crossorigin='anonymous'>
+
+	<!-- end of bootstrap css -->
+
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
+
+
+	<link href='css/style.css' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-select.css">
+	<script src="./js/bootstrap-select.js"></script>
+
+	<!-- tablesorter -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/js/jquery.tablesorter.min.js"></script>
+
+
+	 <!-- script   -->
+        <!-- <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" /> -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+        <!-- <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>      -->
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> -->
+</head>
+<body onload='getInfo()'>
+	<div id='agentHeader' class='row container'>
+		<div class="col-sm-4">
+			<h4>Agent Monitor</h4>
+		</div>
+
+		<!-- <object  type="text/html" data="text/test.txt" id="test"></object> -->
+		<div class='col-sm-12'>
+			<!-- text-align:left; -->
+			
+			<div class='form-group row' id='displayChoise' style='display: inline; float: right;'>
+        	     <div class='col-sm-10 btn-group' data-toggle='buttons'>
+        	         <label class='btn btn-outline-secondary active'onclick='movePage(0)'>
+        	             <input type='radio' style='display:none;'> 詳細 </input>
+        	         </label>
+        	         <!-- <label class='btn btn-outline-secondary'onclick='movePage(1)'>
+        	             <input type='radio' style='display:none;'> 新規作成 </input> 
+        	         </label>
+        	         <label class='btn btn-outline-secondary'onclick='movePage(2)'>
+        	             <input type='radio' style='display:none;'> エージェント移動 </input> 
+        	         </label> -->
+        	         <label class='btn btn-outline-secondary'onclick='movePage(3)'>
+        	             <input type='radio' style='display:none;'> テーブル </input> 
+        	         </label>
+        	     </div>
+        	</div>
+
+		</div>
+		
+
+	</div>
+		<p class="fukidashi" id="balloon" style="display: none; z-index: 99;">吹き出しが表示されます</p>
+
+	<div id='DetailDiv' class="container-fluid">
+		<hr color='red'></hr>
+		<div id="AgentColor" style="background: linear-gradient(to right,rgb(255,255,255),rgb(255,0,0));width: 100%;height: 30px;"><span style="float: left;">0(s)</span><span style="float: right;color: white;" id="work_time">60(s)</span></div>
+<!-- 		<div style='width: 75%;'>
+			<canvas id='agentData'></canvas>
+		</div> -->
+		
+
+		<div id="agentSphereField" class="col-sm-12">
+			
+
+		</div>
+
+	</div>
+
+	<div id='tableDiv' class='container-fluid' style='display: none;''>
+		<hr color='blue'></hr>
+		<table class='table table-bordered infoTable'>
+			<!-- <thead> -->
+				<tr id='ip_table'>
+					<!-- <th></th> -->
+					<th colspan='2'>IP</th>
+					<!-- <th></th> -->
+				</tr>
+			<!-- </thead> -->
+				<tr id='host_table'>
+					<th colspan='2'>HostName</th>
+				</tr>
+				<tr id='memory_used_table'>
+					<th rowspan='3'>Memory</th>
+					<th>used</th>
+
+				</tr>
+				<tr id='memory_free_table'>
+					<th>free</th>
+
+				</tr>
+				<tr id='memory_total_table'>
+					<th>total</th>
+
+				</tr>
+				<tr id='cpu_table'>
+					<th colspan='2'>CPU</th>
+				</tr>
+				<tr id='agent_table'>
+					<th colspan='2'>Agents (Number Only)</th>
+				</tr>
+
+		</table>
+
+	</div>
+
+	<div id="migrateDiv" class="container-fluid" style="display: none;">
+		<hr color='blue'></hr>
+		<form action="">
+			<table class="table">
+				<tr>
+					<th>送り主</th>
+					<th>Agentの名前</th>
+					<th>送り先</th>
+	
+				</tr>
+				<tr>
+					<td>
+						<select name="sender" id="sender">
+							
+						</select>
+
+					</td>
+					<td>
+						<select name="agentName" id="agentName"></select>
+
+					</td>
+					<td>
+						<select name="Destination" id="Destination"></select>
+
+					</td>
+					
+				</tr>
+	
+			</table>
+			
+
+		</form>
+		
+
+	</div>
+
+	<div id="makeDiv" class="container-fluid" style="display: none;">
+		<hr color='green'></hr>
+		<form action="">
+
+			<table class="table">
+				<tr>
+					<th>Agentの名前</th>
+					<th>送り先</th>
+	
+				</tr>
+				<tr>
+					<td>
+						<select name="agentName_make" id="agentName_make">
+							<option>HelloAgent</option>
+						</select>
+
+					</td>
+					<td>
+						<select name="Destination_make" id="Destination_make">
+							<option>133.220.114.126</option>
+							<option>133.220.114.125</option>
+						</select>
+
+					</td>
+
+					
+				</tr>
+	
+			</table>
+			<input type="submit" name="generate">
+
+		</form>
+
+	</div>
+
+	
+<div class="page_link" id="page_link"></div>
+<!-- <div ></div> -->
+<!-- <header style="background-color:gray">Header</header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2" style="background-color:red;">Red</div>
+    <div class="col-sm-8" style="background-color:blue;">Blue</div>
+    <div class="col-sm-2" style="background-color:yellow;">Yellow</div>
+  </div>
+</div>
+<footer style="background-color:gray">Footer</footer> -->
+	<div id="modalArea"></div>
+	<div id="AgentModal"></div>
+
+	
+		
+	<script type="text/javascript" src="js/sortable.js"></script>
+	<script type='text/javascript' src='js/main.js'></script>
+	<script type='text/javascript' src='js/graph.js'></script>
+
+	<!-- <script>
+$(function(){
+  $.ajax({
+    "url":"json/test.json",
+
+    "success":function(data){
+   // JSONデータをparseします。
+      var data=JSON.parse(data);
+      //  appendというmethodを使って#page_linkにulタグを生成します。
+      var ul=$('<ul>').appendTo($('#page_link'));
+   // データの長さだけfor文で展開します。
+      for(var i=0;i<data.length;i++){
+        $('<li>').append(
+          $('<a>').attr('href',data[i]["path"]).append(
+            $('<img>').attr({'src':data[i]["img"],'alt':''})
+            ,$('<span>').attr({'class':'page_name'}).text(data[i]["title"])
+            )
+          ).appendTo(ul);
+      }
+    },
+  })
+});
+</script> -->
+
+	<!-- bootstrap js -->
+	<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js' integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49' crossorigin='anonymous'></script>
+	<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js' integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy' crossorigin='anonymous'></script>
+	<!-- end of bootstrap js -->
+
+
+</body>
+</html>

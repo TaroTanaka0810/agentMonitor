@@ -1,0 +1,44 @@
+// 16時57分48秒
+// ---Remote Machine---
+// 	MyHostName:DESKTOP-6K0AFBG MyIP:192.168.11.15
+// 	CPU:4
+// 	Memory
+// 		total => 124160KB
+// 		free  => 103215KB
+// 		used  => 20944KB
+
+// {
+// 	"MyHostName" : "DESKTOP-6K0AFBG",
+// 	"MyIP" : "192.168.11.15",
+// 	"CPU" : 4,
+// 	"Memory" {
+// 		"total" : 124160,
+// 		"free" : 103215,
+// 		"used" : 20944
+// 	}
+
+// }
+
+// 16時57分48秒
+// ---Master Machine---
+// 	MyHostName:DESKTOP-5QC1CFE MyIP:192.168.11.10
+// 	AgentName:AgentSphereWeb.ServersideAgent AgentID:e0be17c9-751a-4662-ba0a-7c39f80989b4 Time:10[s]
+// 	AgentName:HelloAgent AgentID:dcf43517-bea2-4b0d-9448-5d62a50b0c3c Time:3[s]
+// 	Number:2
+// 	Heavy:0
+
+{
+	"MyHostName" : "DESKTOP-5QC1CFE",
+	"MyIP" : "192.168.11.10",
+	"Agent":[{
+		"name":"AgentSphereWeb.ServersideAgent",//エージェントの名前
+		"id" : "e0be17c9-751a-4662-ba0a-7c39f80989b4",//エージェントのID
+		"time":"10"//処理にかかっている時間(秒)
+	},
+	{
+		"name":"HelloAgent",//エージェントの名前
+		"id" : "dcf43517-bea2-4b0d-9448-5d62a50b0c3c",//エージェントのID
+		"time":"3"//処理にかかっている時間(秒)
+	}
+	],
+}

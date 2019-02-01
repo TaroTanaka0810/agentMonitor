@@ -1,0 +1,10 @@
+16時57分48秒
+---Remote Machine---
+	MyHostName:DESKTOP-6K0AFBG MyIP:192.168.11.15
+	CPU:4
+	Memory
+		total => 124160KB
+		free  => 103215KB
+		used  => 20944KB
+
+		

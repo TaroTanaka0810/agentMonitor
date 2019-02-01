@@ -1,0 +1,45 @@
+[
+{
+	"MyHostName" : "DESKTOP-5QC1CFE",
+	"MyIP" : "192.168.11.10",
+	"Agent":[{
+		"name":"AgentSphereWeb.ServersideAgent",
+		"id" : "e0be17c9-751a-4662-ba0a-7c39f80989b4",
+		"time":10
+	},
+	{
+		"name":"HelloAgent",
+		"id" : "dcf43517-bea2-4b0d-9448-5d62a50b0c3c",
+		"time":3
+	}
+	],
+	"CPU" : 4,
+	"Memory" :{
+		"total" : 124160,
+		"free" : 103215,
+		"used" : 20944
+		
+	},
+},
+{
+	"MyHostName" : "DESKTOP-6K0AFBG",
+	"MyIP" : "192.168.11.15",
+	"Agent":[{
+		"name":"AgentSphereWeb.ClientAgent",
+		"id" : "e0be17c9-751a-4662-ba0a-7c39faketjbne",
+		"time":10
+	},
+	{
+		"name":"HelloAgent",
+		"id" : "dcf43517-bea2-4b0d-7490-5d62a50b0c3c",
+		"time":3
+	}
+	],
+	"CPU" : 4,
+	"Memory" :{
+		"total" : 100000,
+		"free" : 60000,
+		"used" : 40000
+	},
+}
+]
